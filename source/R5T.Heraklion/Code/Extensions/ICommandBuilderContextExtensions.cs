@@ -7,13 +7,13 @@ namespace R5T.Heraklion
 {
     public static class ICommandBuilderContextExtensions
     {
-        public static string BuildCommand<TContext>(this ICommandBuilderContext<TContext> context)
+        public static string BuildCommand(this ICommandBuilderContext context)
         {
             var command = context.CommandBuilder.BuildCommand();
             return command;
         }
 
-        public static ICommandBuilderContext<TContext> Condition<TContext>(this ICommandBuilderContext<TContext> context, bool condition, Action ifTrue, Action ifFalse)
+        public static ICommandBuilderContext Condition(this ICommandBuilderContext context, bool condition, Action ifTrue, Action ifFalse)
         {
             if(condition)
             {
@@ -27,14 +27,14 @@ namespace R5T.Heraklion
             return context;
         }
 
-        public static ICommandBuilderContext<TContext> Condition<TContext>(this ICommandBuilderContext<TContext> context, bool condition, Action ifTrue)
+        public static ICommandBuilderContext Condition(this ICommandBuilderContext context, bool condition, Action ifTrue)
         {
             context.Condition(condition, ifTrue, ActionHelper.DoNothing);
 
             return context;
         }
 
-        public static ICommandBuilderContext<TContext> Condition<TContext>(this ICommandBuilderContext<TContext> context, bool condition, Action<ICommandBuilderContext<TContext>> ifTrue, Action<ICommandBuilderContext<TContext>> ifFalse)
+        public static ICommandBuilderContext Condition<TContext>(this ICommandBuilderContext<TContext> context, bool condition, Action<ICommandBuilderContext<TContext>> ifTrue, Action<ICommandBuilderContext<TContext>> ifFalse)
         {
             if (condition)
             {
@@ -48,7 +48,7 @@ namespace R5T.Heraklion
             return context;
         }
 
-        public static ICommandBuilderContext<TContext> Condition<TContext>(this ICommandBuilderContext<TContext> context, bool condition, Action<ICommandBuilderContext<TContext>> ifTrue)
+        public static ICommandBuilderContext Condition<TContext>(this ICommandBuilderContext<TContext> context, bool condition, Action<ICommandBuilderContext<TContext>> ifTrue)
         {
             context.Condition(condition, ifTrue, ActionHelper.DoNothing);
 
